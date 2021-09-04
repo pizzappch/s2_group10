@@ -1,4 +1,4 @@
-class Question {
+class Question { //สร้าง class สำหรับคำถาม
   constructor(question, point, answer, choice) {
     this.question = String(question);
     this.point = point;
