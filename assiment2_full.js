@@ -1,16 +1,16 @@
-class Question {
-  constructor(question, point, answer, choice) {
-    this.question = String(question);
-    this.point = point;
-    this.answer = String(answer);
+class Question { //สร้าง class สำหรับคำถาม
+  constructor(question, point, answer, choice) { //สร้าง constructor ที่ประกอบด้วย คำถาม, คะแนน, คำตอบ
+    this.question = String(question);//กำหนด datatype เป็น String เพื่อให้รองรับการเก็บคำถามได้ทุกชนิด
+    this.point = point; 
+    this.answer = String(answer); //กำหนด datatype เป็น String เพื่อให้รองรับการเก็บคำถามได้ทุกชนิด
     this.choice = choice;
   }
 }
 
-class Player {
+class Player { //สร้าง class ของผู้เล่น
   constructor(name, questionAndAnswer) {
     this.name = name;
-    this.score = 0;
+    this.score = 0; //ตั้งค่า defult ของคะแนนให้เป็น 0
     this.questionAndAnswer = questionAndAnswer;
     this.status = [];
     for (let question of questionAndAnswer) {
@@ -18,15 +18,15 @@ class Player {
       this.status.push(status);
     }
   }
-  toAnswer(question, choiceSelect) {
-    if (
+  toAnswer(question, choiceSelect) { //สร้าง class toAnswer เพื่อให้ Player เลือกคำถามและตอบคำตอบ
+    if ( //เรียกคำถาม, คะแนน, คำตอบ ของต้นฉบับที่ถูกเก็บไว้ใน question นั้นๆ เช่น player เลือก question1 ก็จะเรียกข้อมูลของข้อนั้นมา
       question.question &&
       question.point &&
       question.answer &&
       question.choice
     ) {
       if (Object.keys(question.choice).includes(String(choiceSelect))) {
-        if (String(choiceSelect) === question.answer) {
+        if (String(choiceSelect) === question.answer) { // ทำการเทียบถ้า choice ที่ player ตอบตรงกับคำตอบจะตรงเงื่อนไขแต่ถ้าไม่ตรงก็จะไป else
           this.score = this.score + question.point;
           return `${this.name} answers question ${question.question} with choice ${choiceSelect} : ${question.choice[choiceSelect]} correct , get ${question.point} points and total score is ${this.score}`;
         } else {
